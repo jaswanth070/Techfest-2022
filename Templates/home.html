@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Emergency QR</title>
+    {%load static%}
+    <link rel="icon" type="image/x-icon" href="{% static '/favicon.ico' %}">
+    <!-- <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="path/to/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.1/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        #logo {
+            height: 7rem;
+        }
+
+
+        .bloc-video {
+            position: relative;
+        }
+
+        .bloc-video video {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            z-index: -1;
+            position: fixed;
+            opacity: 0.5;
+            -webkit-filter: blur(5px);
+            -moz-filter: blur(5px);
+            -o-filter: blur(5px);
+            -ms-filter: blur(5px);
+            filter: blur(5px);
+        }
+
+
+        @media (max-width: 768px) {
+            .bloc-video video {
+                height: 100vh;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            border-radius: 2px;
+            background-color: #666;
+        }
+
+        body {
+            line-height: unset !important;
+        }
+
+        /* Font Style */
+        .ff-0 {
+            font-family: sans-serif;
+        }
+
+        .ff-1 {
+            font-family: "Noto Sans TC", sans-serif;
+        }
+
+        .fw-900 {
+            font-weight: 900;
+        }
+
+        .fs-05 {
+            font-size: 0.55em;
+            transition: font-size 0.3s;
+        }
+
+        .fs-06 {
+            font-size: 0.6em;
+            transition: font-size 0.3s;
+        }
+
+        .fs-07 {
+            font-size: 0.7em;
+            transition: font-size 0.3s;
+        }
+
+        .fs-08 {
+            font-size: 0.8em;
+            transition: font-size 0.3s;
+        }
+
+        .fs-09 {
+            font-size: 0.9em;
+            transition: font-size 0.3s;
+        }
+
+        .fs-10 {
+            font-size: 1em;
+            transition: font-size 0.3s;
+        }
+
+        .fs-11 {
+            font-size: 1.1em;
+            transition: font-size 0.3s;
+        }
+
+        .fs-12 {
+            font-size: 1.2em;
+            transition: font-size 0.3s;
+        }
+
+        .fs-13 {
+            font-size: 1.3em;
+            transition: font-size 0.3s;
+        }
+
+        .fs-14 {
+            font-size: 1.4em;
+            transition: font-size 0.3s;
+        }
+
+        .fs-15 {
+            font-size: 1.5em;
+            transition: font-size 0.3s;
+        }
+
+        .fs-16 {
+            font-size: 1.6em;
+            transition: font-size 0.3s;
+        }
+
+        .fs-17 {
+            font-size: 1.7em;
+            transition: font-size 0.3s;
+        }
+
+        .fs-18 {
+            font-size: 1.8em;
+            transition: font-size 0.3s;
+        }
+
+        .fs-19 {
+            font-size: 1.9em;
+            transition: font-size 0.3s;
+        }
+
+        .fs-115r {
+            font-size: 1.15rem;
+            transition: font-size 0.3s;
+        }
+
+        p a,
+        .fc-link {
+            color: #17a2b8 !important;
+            text-decoration: none !important;
+        }
+
+        p a:hover,
+        .fc-link:hover {
+            color: #148a9c !important;
+            text-decoration: none !important;
+        }
+
+        a {
+            text-decoration: none !important;
+        }
+
+        a:focus,
+        a:active {
+            outline: none !important;
+        }
+
+        .hf {
+            font-size: 2.3rem !important;
+            font-weight: 700 !important;
+            line-height: 1.3 !important;
+            margin-top: 15%;
+        }
+
+        .hf-p {
+            color: rgba(255, 255, 255, 0.75) !important;
+            font-size: 1rem !important;
+            font-weight: 400 !important;
+        }
+
+        .fc-0 {
+            color: #161c2d !important;
+        }
+
+        .fc-1 {
+            color: #17a2b8 !important;
+        }
+
+        .fc-2 {
+            color: #3e4265 !important;
+        }
+
+        .fc-2:hover {
+            color: #17a2b8 !important;
+        }
+
+        .fc-2-active {
+            color: #17a2b8 !important;
+        }
+
+        .fc-3 {
+            color: #131022 !important;
+        }
+
+        .fc-4,
+        .fc-4 a,
+        .f-a {
+            color: #3e4265 !important;
+            text-decoration-line: none;
+        }
+
+        .fc-4 a:hover,
+        .f-a:hover {
+            color: #17a2b8 !important;
+        }
+
+        .fc-5 {
+            color: #585c7b !important;
+        }
+
+        .fc-6 {
+            color: #9397ad !important;
+        }
+
+        .fc-7,
+        .fc-7 a {
+            color: rgba(255, 255, 255, 0.7) !important;
+            text-decoration-line: none;
+        }
+
+        .fc-7 a:hover {
+            color: rgba(255, 255, 255) !important;
+        }
+
+        .fc-8 {
+            color: rgba(23, 162, 184, 0.4) !important;
+        }
+
+        /* Button */
+        .cnav {
+            color: #17a2b8 !important;
+            background-color: rgba(23, 162, 184, 0.1) !important;
+            transition: all 0.25s ease !important;
+        }
+
+        .cnav:hover {
+            color: #fff !important;
+            background-color: #17a2b8 !important;
+        }
+
+        .cnav.nav-link.active,
+        .show>.cnav.nav-link {
+            color: #fff !important;
+            background-color: #17a2b8 !important;
+        }
+
+        .btn-primary {
+            color: #fff !important;
+            background-color: #17a2b8 !important;
+            border-color: #17a2b8 !important;
+        }
+
+        .btn-primary:hover {
+            color: #fff !important;
+            background-color: #148a9c !important;
+            border-color: #128293 !important;
+        }
+
+        .btn-primary-soft {
+            color: #17a2b8 !important;
+            background-color: rgba(23, 162, 184, 0.1) !important;
+        }
+
+        .btn-primary-soft:hover {
+            color: #fff !important;
+            background-color: #17a2b8 !important;
+        }
+
+        .btn-primary-outline {
+            color: #17a2b8 !important;
+            border-color: #17a2b8 !important;
+        }
+
+        .btn-primary-outline:hover {
+            color: #fff !important;
+            background-color: #17a2b8 !important;
+            border-color: #17a2b8 !important;
+        }
+
+        .btn-danger-soft {
+            color: #d6293e !important;
+            background-color: rgba(214, 41, 62, 0.1) !important;
+        }
+
+        .btn-danger-soft:hover {
+            color: #fff !important;
+            background-color: #d6293e !important;
+        }
+
+        /* Badge */
+        .bg-info1 {
+            color: #fff !important;
+            background-color: #17a2b8 !important;
+        }
+
+        .bg-info2 {
+            color: #17a2b8 !important;
+            background-color: rgba(23, 162, 184, 0.1) !important;
+        }
+
+        .bg-blue1 {
+            color: #fff !important;
+            background-color: #003b8f !important;
+        }
+
+        .bg-danger1 {
+            color: #fff !important;
+            background-color: #ff0000 !important;
+        }
+
+        /* fa */
+        .fa-li {
+            top: 0.15em !important;
+        }
+
+        .fa-ul {
+            margin-left: 1.5em !important;
+        }
+
+        .fa-ul li {
+            margin-bottom: 3% !important;
+        }
+    </style>
+    <style>
+        .footer {
+            position: relative;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            /* padding: 2rem; */
+            background: #17a2b8;
+            color: white;
+            font-weight: 500;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="bloc-video">
+        <video autoplay muted loop>
+            <source
+                src="https://static.vecteezy.com/system/resources/previews/007/515/611/mp4/scanning-qr-code-with-a-smartphone-4k-animation-digital-information-and-payment-method-with-qr-code-4k-footage-a-hand-holding-a-mobile-and-scanning-qr-code-4k-animation-video.mp4"
+                type="video/mp4">
+        </video>
+    </div>
+
+    <nav class="navbar bg-* text-center">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="{% static '/logo.png' %}" alt="Logo" class="d-inline-block align-text-top" id="logo">
+            </a>
+            <span id="logo-text" style="font-size: 3rem;"><span class="fc-1 fw-bold">Emergency</span> <span
+                    class="fw-bold">QR</span></span>
+        </div>
+    </nav>
+
+    <section class="container ">
+        <div class="row" id="form-elements">
+            <form class="col-xl-7 col-md-8 mt-5 offset-xl-1 needs-validation" novalidate="" id="gform" method="POST">
+                {%csrf_token%}
+                <div class="row">
+                    <div class="col-sm-6 mb-4">
+                        <label for="name" class="form-label fs-base fc-3 fw-bold"><i
+                                class="fa-solid bi bi-person-fill me-2"></i>Name</label>
+                        <input type="text" id="name" name="Name" class="form-control form-control-lg" required=""
+                            placeholder="Your Name" maxlength="60">
+                        <div class="invalid-feedback">Required!</div>
+                    </div>
+
+                    <div class="col-sm-6 mb-4">
+                        <label for="email" class="form-label fs-base fc-3 fw-bold"><i
+                                class="fa fa-motorcycle me-2"></i>Vehical No</label>
+                        <input type="text" id="email" name="Vhc_no" class="form-control form-control-lg" required=""
+                            placeholder="Your Vehical Number" maxlength="100">
+                        <div class="invalid-feedback">Required / Error Format!</div>
+                    </div>
+
+                    <div class="col-12 mb-4">
+                        <label for="gender" class="form-label fs-base fc-3 fw-bold"><i
+                                class="fa-solid bi bi-gender-ambiguous me-2"></i>Gender</label><br>
+                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                            <input type="radio" class="btn-check" name="Gender" id="btnradio1" autocomplete="off"
+                                value="Male" checked="">
+                            <label class="btn btn-outline-secondary" for="btnradio1"><i
+                                    class="fa-solid bi bi-gender-male me-2"></i>Male</label>
+                            <input type="radio" class="btn-check" name="Gender" id="btnradio3" autocomplete="off"
+                                value="Female">
+                            <label class="btn btn-outline-secondary" for="btnradio3"><i
+                                    class="fa-solid bi bi-gender-female me-2"></i>Female</label>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 mb-4">
+                        <label for="phone" class="form-label fs-base fc-3 fw-bold"><i
+                                class="fa-solid bi bi-telephone-fill me-2"></i><span data-toggle="tooltip"
+                                data-placement="top" title="Not of the rider">Emergency Phone</span></label>
+                        <input type="tel" id="phone" name="Phone1" class="form-control form-control-lg" required=""
+                            data-format="custom" data-delimiter="-" data-blocks="2 3 4" data-numeral="9"
+                            placeholder="Your Phone Number" pattern="[0-9\d\-*+#,;]*" minlength="10" maxlength="20">
+                        <div class="invalid-feedback">Required / Error Format!</div>
+                    </div>
+                    <div class="col-sm-6 mb-4">
+                        <label for="phone" class="form-label fs-base fc-3 fw-bold" data-toggle="tooltip"
+                            data-placement="top" title="Not of the rider"><i
+                                class="fa-solid bi bi-telephone-fill me-2"></i>Emergency Phone</label>
+                        <input type="tel" id="phone" name="Phone2" data-toggle="tooltip" data-placement="top"
+                            title="Not of the rider" class="form-control form-control-lg" required=""
+                            data-format="custom" data-delimiter="-" data-blocks="2 3 4" data-numeral="9"
+                            placeholder="Your Phone Number" pattern="[0-9\d\-*+#,;]*" minlength="10" maxlength="20">
+                        <div class="invalid-feedback">Required / Error Format!</div>
+                    </div>
+                    <div class="col-sm-6 mb-4">
+                        <label for="phone" class="form-label fs-base fc-3 fw-bold"><i
+                                class="fa-solid bi bi-telephone-fill me-2"></i>Phone (Optional)</label>
+                        <input type="tel" id="phone" name="Phone3" class="form-control form-control-lg"
+                            data-format="custom" data-delimiter="-" data-blocks="2 3 4" data-numeral="9"
+                            placeholder="Your Phone Number" pattern="[0-9\d\-*+#,;]*" minlength="10" maxlength="20">
+                    </div>
+
+                    <div class="col-sm-6 mb-4">
+                        <label for="subject" class="form-label fs-base fc-3 fw-bold"><i
+                                class="fa-solid bi bi-tags-fill me-2"></i>Occupation</label>
+                        <select id="subject" class="form-select form-select-lg" name="Occupation" required="">
+                            <option value="Employee" selected="" disabled="">Employee </option>
+                            <option value="Student">Student</option>
+                            <option value="Worker">Worker</option>
+                            <option value="House Wife">House Wife</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <div class="invalid-feedback">Required!</div>
+                    </div>
+
+                    <div class="col-12 mb-4">
+                        <label for="message" class="form-label fs-base fc-3 fw-bold"><i
+                                class="fa-solid bi bi-pencil-square me-2"></i>Address</label>
+                        <textarea id="message" name="Address" class="form-control form-control-lg" rows="2" required=""
+                            placeholder="Write your present address" maxlength="100"></textarea>
+                        <div class="invalid-feedback">Required!</div>
+                    </div>
+
+                    <div class="col-sm-6 mb-4">
+                        <label for="subject" class="form-label fs-base fc-3 fw-bold"><i class="fa fa-medkit"></i> Blood
+                            Group</label>
+                        <select id="subject" class="form-select form-select-lg" name="Blood_Group" required="">
+                            <option value="Unknown">Unknown </option>
+                            <option value="A+">A+ </option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                        </select>
+                        <div class="invalid-feedback">Required!</div>
+                    </div>
+
+                    <div class="col-12 mb-4">
+                        <label for="message" class="form-label fs-base fc-3 fw-bold"><i class="fa fa-stethoscope"></i>
+                            Medical Condition</label>
+                        <textarea id="message" name="Medical_cond" class="form-control form-control-lg" rows="4"
+                            required="" placeholder="Mention your health condition and disesases if any"
+                            maxlength="300"></textarea>
+                        <div class="invalid-feedback">Required!</div>
+                    </div>
+                </div>
+                <br>
+                <button type="submit" class="btn btn-primary btn-lg me-3"><i
+                        class="fa-solid bi bi-qr-code me-2"></i>Generate</button>
+                <button type="reset" class="btn btn-primary-soft btn-lg"><i
+                        class="fa-solid bi bi-arrow-clockwise me-2"></i>Reset</button>
+            </form>
+        </div>
+
+    </section>
+    
+    <div class="footer">&copy;<span id="year"> </span><span> EMERGENCY-QR. All rights reserved to Jaswanth Madiya.</span></div>
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+    <script>
+        // Validation
+        (function () {
+            "use strict";
+            var forms = document.querySelectorAll(".needs-validation");
+            Array.prototype.slice.call(forms).forEach(function (form) {
+                form.addEventListener(
+                    "submit",
+                    function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add("was-validated");
+                    },
+                    false
+                );
+            });
+        })();
+
+        //reCAPTCHA Validation
+        document.getElementById("gform").addEventListener("submit", function (evt) {
+            var response = grecaptcha.getResponse();
+            if (response.length == 0) {
+                alert("Please Validation You're Not Robot");
+                evt.preventDefault();
+                return false;
+            }
+        });
+    </script>
+    <script
+        src="https://www.google.com/recaptcha/enterprise.js?render=6LfOegojAAAAAFJErXettWNfpjkJXwY4yKT1U-mY"></script>
+    <script>
+        grecaptcha.enterprise.ready(function () {
+            grecaptcha.enterprise.execute('6LfOegojAAAAAFJErXettWNfpjkJXwY4yKT1U-mY', { action: 'login' }).then(function (token) {
+
+            });
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
