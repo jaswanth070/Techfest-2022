@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-7u_sz3jin4)5u60$e(x04$b61^*s@ph-u^4o@%o59a2mp=gh0h'
-
+SECRET_KEY = os.environ.get('SECRET_KEY', default='django-insecure-7u_sz3jin4)5u60$e(x04$b61^*s@ph-u^4o@%o59a2mp=gh0h')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -126,6 +127,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 # STATICFILES_DIRS = [
 #     os.path.join(BASE_DIR, "static"),
 # ]
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 # Default primary key field type
