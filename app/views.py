@@ -50,6 +50,9 @@ def home(request):
 def download(request):
     return render(request,'display.html')
 
+def intro(request):
+    return render(request,'temp.html')
+
 def docs(request):
     return render(request,'docs.html')
 
