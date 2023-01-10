@@ -139,9 +139,11 @@
 
     <div class="bloc-video">
         <video autoplay muted loop>
-            <source
+            <!-- <source
                 src="https://static.vecteezy.com/system/resources/previews/007/515/611/mp4/scanning-qr-code-with-a-smartphone-4k-animation-digital-information-and-payment-method-with-qr-code-4k-footage-a-hand-holding-a-mobile-and-scanning-qr-code-4k-animation-video.mp4"
-                type="video/mp4">
+                type="video/mp4"> -->
+                <source
+                src="{% static 'bg_video.mp4'%}" type="video/mp4">
         </video>
     </div>
 
@@ -160,7 +162,7 @@
         <div class="div">
             <h2 style="font-size:1.3rem; color: #fff;"><b>IN CASE OF EMERGENCY</b></h2>
             <img id="qr" src="" class="qr-code img-thumbnail img-responsive">
-            <p class="link">www.emergency-qr.herokuapp.com</p>
+            <p class="link">www.emergency-qr.onrender.com</p>
             <div class="div2">
                 <h1 class="qr-h1"><b>EMERGENCY DETAILS <span style="font-size: 1.5rem;">SCAN ME</span></b></h1>
                 <h2 style="font-size:1.3rem; color: #fff;">MY DETAILS</h2>
